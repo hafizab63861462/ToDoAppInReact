@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { toDoActions } from "../store";
 import "./inputForm.css";
 
 const InputForm = () => {
@@ -13,12 +14,13 @@ const InputForm = () => {
 
   const addTaskHandler = (event) => {
     if (event.key === "Enter" && newTask) {
-      dispatch({
-        type: "ADD",
-        title: newTask,
-        status: false,
-        isShowUpdateField: false,
-      });
+      dispatch(
+        toDoActions.Add({
+          title: newTask,
+          status: false,
+          isShowUpdateField: false,
+        })
+      );
       setNewTask("");
     }
   };

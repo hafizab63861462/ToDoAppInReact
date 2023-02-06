@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { toDoActions } from "../store";
 
 const UpdateForm = (props) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const UpdateForm = (props) => {
 
   const updateTaskHandler = (event) => {
     if (event.key === "Enter") {
-      dispatch({ type: "Update", obj: updateData });
+      dispatch(toDoActions.Update({ obj: updateData }));
       setUpdateData("");
     }
   };

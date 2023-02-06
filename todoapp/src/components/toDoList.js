@@ -5,6 +5,7 @@ import "./toDoList.css";
 import { faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import UpdateForm from "./updateForm";
+import { toDoActions } from "../store";
 
 const ToDOList = () => {
   const list = useSelector((state) => state?.toDos);
@@ -13,61 +14,59 @@ const ToDOList = () => {
   console.log(list);
 
   const deleteTaskHandler = (id) => {
-    dispatch({ type: "Delete", id: id });
+    dispatch(toDoActions.Delete({ id }));
   };
 
   const editTaskHandler = (id) => {
-    dispatch({ type: "Edit", id: id });
+    dispatch(toDoActions.Edit({ id }));
   };
 
   const completeTaskHandler = (id) => {
-    dispatch({ type: "Complete", id: id });
+    dispatch(toDoActions.Complete({ id }));
   };
 
   return (
     <div>
       {list &&
-        list
-          .sort((a, b) => (a.id > b.id ? 1 : -1))
-          .map((task) => {
-            return (
-              <Fragment key={task?.id}>
-                <div className="col taskBg">
-                  {list[task.id]?.isShowUpdateField ? (
-                    <>
-                      <UpdateForm
-                        id={task?.id}
-                        title={task?.title}
-                        status={task.status}
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <div className={task?.status ? "done" : ""}>
-                        <input
-                          type="checkbox"
-                          onClick={() => completeTaskHandler(task?.id)}
-                        ></input>
-                        <span className="taskText">{task?.title}</span>
-                      </div>
-                    </>
-                  )}
-                  <div className="iconWrap">
-                    <span
-                      className="p-3"
-                      onClick={() => editTaskHandler(task?.id)}
-                    >
-                      <FontAwesomeIcon icon={faPen} />
-                    </span>
-                    <span onClick={() => deleteTaskHandler(task.id)}>
-                      <FontAwesomeIcon icon={faTrashCan} />
-                    </span>
-                  </div>
+        list.map((task) => {
+          return (
+            <Fragment key={task?.id}>
+              <div className="col taskBg">
+                {list[task.id]?.isShowUpdateField ? (
+                  <>
+                    <UpdateForm
+                      id={task?.id}
+                      title={task?.title}
+                      status={task.status}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div className={task?.status ? "done" : ""}>
+                      <input
+                        type="checkbox"
+                        onClick={() => completeTaskHandler(task?.id)}
+                      ></input>
+                      <span className="taskText">{task?.title}</span>
+                    </div>
+                  </>
+                )}
+                <div className="iconWrap">
+                  <span
+                    className="p-3"
+                    onClick={() => editTaskHandler(task?.id)}
+                  >
+                    <FontAwesomeIcon icon={faPen} />
+                  </span>
+                  <span onClick={() => deleteTaskHandler(task.id)}>
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </span>
                 </div>
-                <hr />
-              </Fragment>
-            );
-          })}
+              </div>
+              <hr />
+            </Fragment>
+          );
+        })}
     </div>
   );
 };
