@@ -1,14 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import InputForm from "./components/inputForm";
-import ToDOList from "./components/toDoList";
+import { ToDoListContainer } from "./containers/toDoListContainer";
+import { AddTaskContainer } from "./containers/addTaskContainer";
 
 function App() {
   return (
     <div className="container center">
-      <InputForm />
+      <AddTaskContainer />
       <hr />
-      <ToDOList />
+      <ToDoListContainer />
     </div>
   );
 }

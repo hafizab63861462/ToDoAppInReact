@@ -1,73 +1,76 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import "./toDoList.css";
 import { faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, useDispatch } from "react-redux";
-import UpdateForm from "./updateForm";
+import InputField from "./InputField";
 
-const ToDOList = () => {
-  const list = useSelector((state) => state?.toDos);
-  const dispatch = useDispatch();
-
-  console.log(list);
-
+const ToDOList = ({
+  list,
+  editAction,
+  deleteAction,
+  completeAction,
+  updateAction,
+}) => {
   const deleteTaskHandler = (id) => {
-    dispatch({ type: "Delete", id: id });
+    deleteAction(id);
   };
 
   const editTaskHandler = (id) => {
-    dispatch({ type: "Edit", id: id });
+    editAction(id);
   };
 
   const completeTaskHandler = (id) => {
-    dispatch({ type: "Complete", id: id });
+    completeAction(id);
+  };
+
+  const updateTaskHandler = (obj) => {
+    updateAction(obj);
   };
 
   return (
     <div>
       {list &&
-        list
-          .sort((a, b) => (a.id > b.id ? 1 : -1))
-          .map((task) => {
-            return (
-              <Fragment key={task?.id}>
-                <div className="col taskBg">
-                  {list[task.id]?.isShowUpdateField ? (
-                    <>
-                      <UpdateForm
-                        id={task?.id}
-                        title={task?.title}
-                        status={task.status}
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <div className={task?.status ? "done" : ""}>
-                        <input
-                          type="checkbox"
-                          onClick={() => completeTaskHandler(task?.id)}
-                        ></input>
-                        <span className="taskText">{task?.title}</span>
-                      </div>
-                    </>
-                  )}
-                  <div className="iconWrap">
-                    <span
-                      className="p-3"
-                      onClick={() => editTaskHandler(task?.id)}
-                    >
-                      <FontAwesomeIcon icon={faPen} />
-                    </span>
-                    <span onClick={() => deleteTaskHandler(task.id)}>
-                      <FontAwesomeIcon icon={faTrashCan} />
-                    </span>
-                  </div>
+        list.map((task) => {
+          return (
+            <Fragment key={task?.id}>
+              <div className="col imageAllignment">
+                {list[task.id]?.isShowUpdateField ? (
+                  <>
+                    <InputField
+                      key={task.id}
+                      className=" form-control-sm"
+                      value={task}
+                      onKeyPress={updateTaskHandler}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div className={task?.status ? "done" : ""}>
+                      <input
+                        type="checkbox"
+                        onClick={() => completeTaskHandler(task?.id)}
+                      ></input>
+                      <span className="taskText">{task?.title}</span>
+                    </div>
+                  </>
+                )}
+                <div className="iconWrap">
+                  <span
+                    className="p-3"
+                    onClick={() => editTaskHandler(task?.id)}
+                  >
+                    <FontAwesomeIcon icon={faPen} />
+                  </span>
+                  <span onClick={() => deleteTaskHandler(task.id)}>
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </span>
                 </div>
-                <hr />
-              </Fragment>
-            );
-          })}
+              </div>
+              <hr />
+            </Fragment>
+          );
+        })}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-.taskBg {
+.imageAllignment {
   background-color: white;
   border-radius: 6px;
   margin-bottom: 20px;
@@ -8,7 +8,7 @@
   position: relative;
 }
 
-.taskBg .done .taskText {
+.imageAllignment .done .taskText {
   text-decoration: line-through;
   opacity: 0.3;
 }

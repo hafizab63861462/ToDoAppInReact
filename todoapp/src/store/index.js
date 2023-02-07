@@ -1,63 +1,70 @@
 import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import ActionType from "../config/enums";
 
 const initialState = {
   toDos: [],
 };
 
 const toDo = (state = initialState, action) => {
-  if (action.type === "ADD") {
-    const newToDo = {
-      id: state?.toDos[state?.toDos?.length - 1]?.id + 1 || 0,
-      title: action.title,
-      status: action.status,
-      isShowUpdateField: action.isShowUpdateField,
-    };
-    const temp = [...state.toDos, newToDo];
-    return {
-      ...state,
-      toDos: temp,
-    };
-  } else if (action.type === "Edit") {
-    const temp = state.toDos.map((todo) => {
-      if (todo.id === action.id) {
-        return { ...todo, isShowUpdateField: true };
-      }
-      return todo;
-    });
+  switch (action.type) {
+    case ActionType.Add:
+      const newToDo = {
+        id: state?.toDos[state?.toDos?.length - 1]?.id + 1 || 0,
+        title: action.title,
+        status: action.status,
+        isShowUpdateField: action.isShowUpdateField,
+      };
+      const temp_add = [...state.toDos, newToDo];
+      return {
+        ...state,
+        toDos: temp_add,
+      };
+      break;
+    case ActionType.Edit:
+      const temp_edit = state.toDos.map((todo) => {
+        if (todo.id === action.id) {
+          return { ...todo, isShowUpdateField: true };
+        }
+        return todo;
+      });
 
-    return {
-      ...state,
-      toDos: temp,
-    };
-  } else if (action.type === "Update") {
-    let filterRecords = [...state.toDos].filter(
-      (task) => task.id !== action.obj.id
-    );
-    let upDateObject = [...filterRecords, action.obj];
-    return {
-      ...state,
-      toDos: upDateObject,
-      isShowUpdateField: false,
-    };
-  } else if (action.type === "Delete") {
-    let temp = state.toDos.filter((task) => task.id != action.id);
-    return {
-      ...state,
-      toDos: temp,
-    };
-  } else if (action.type === "Complete") {
-    const temp = state.toDos.map((todo) => {
-      if (todo.id === action.id) {
-        return { ...todo, status: !todo.status };
-      }
-      return todo;
-    });
+      return {
+        ...state,
+        toDos: temp_edit,
+      };
+      break;
+    case ActionType.Delete:
+      let temp_delete = state.toDos.filter((task) => task.id != action.id);
+      return {
+        ...state,
+        toDos: temp_delete,
+      };
+      break;
+    case ActionType.Update:
+      let filterRecords = [...state.toDos].filter(
+        (task) => task.id !== action.obj.id
+      );
+      let upDateObject = [...filterRecords, action.obj];
+      return {
+        ...state,
+        toDos: upDateObject,
+        isShowUpdateField: false,
+      };
+      break;
+    case ActionType.Complete:
+      const temp_complete = state.toDos.map((todo) => {
+        if (todo.id === action.id) {
+          return { ...todo, status: !todo.status };
+        }
+        return todo;
+      });
 
-    return {
-      ...state,
-      toDos: temp,
-    };
+      return {
+        ...state,
+        toDos: temp_complete,
+      };
+      break;
   }
 };
 
