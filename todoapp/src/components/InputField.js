@@ -10,8 +10,8 @@ const InputField = ({
   const { register, reset } = useForm();
 
   const onSubmit = (event) => {
-    if (event.key === ActionType.Enter && event.target.value) {
-      event.preventDefault();
+    event.preventDefault();
+    if (event.target.value) {
       let obj = {
         id: value?.id,
         title: event.target.value,
@@ -22,8 +22,14 @@ const InputField = ({
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === ActionType.Enter) {
+      onSubmit(event);
+    }
+  };
+
   return (
-    <form onKeyPress={onSubmit}>
+    <form onKeyPress={handleKeyDown}>
       <input
         className={className}
         placeholder={placeholder}

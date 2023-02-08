@@ -29,11 +29,20 @@ body {
 @media only screen and (min-width: 415px) and (max-width: 768px) {
   .container {
     min-width: 700px;
+    max-height: 1000px;
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
   .container {
     min-width: 800px;
+    max-height: 1100px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    min-width: 1000px;
+    max-height: 1300px;
   }
 }
