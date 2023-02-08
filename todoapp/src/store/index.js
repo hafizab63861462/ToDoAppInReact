@@ -42,14 +42,16 @@ const toDo = (state = initialState, action) => {
       };
       break;
     case ActionType.Update:
-      let filterRecords = [...state.toDos].filter(
-        (task) => task.id !== action.obj.id
-      );
-      let upDateObject = [...filterRecords, action.obj];
+      const temp_update = state.toDos.map((todo) => {
+        if (todo.id === action.obj.id) {
+          return { ...todo, title: action.obj.title, isShowUpdateField: false };
+        }
+        return todo;
+      });
+
       return {
         ...state,
-        toDos: upDateObject,
-        isShowUpdateField: false,
+        toDos: temp_update,
       };
       break;
     case ActionType.Complete:

@@ -5,7 +5,7 @@ import {
   deleteToDo,
   completeToDo,
 } from "../store/action";
-import ToDOList from "../components/toDoList";
+import ToDoList from "../components/toDoList";
 
 function mapStateToProps(state = { toDos: [] }) {
   return {
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
 export const ToDoListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ToDOList);
+)(ToDoList);

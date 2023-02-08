@@ -5,7 +5,7 @@ import "./toDoList.css";
 import { faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import InputField from "./InputField";
 
-const ToDOList = ({
+const ToDoList = ({
   list,
   editAction,
   deleteAction,
@@ -36,24 +36,21 @@ const ToDOList = ({
             <Fragment key={task?.id}>
               <div className="col imageAllignment">
                 {list[task.id]?.isShowUpdateField ? (
-                  <>
-                    <InputField
-                      key={task.id}
-                      className=" form-control-sm"
-                      value={task}
-                      onKeyPress={updateTaskHandler}
-                    />
-                  </>
+                  <InputField
+                    key={task.id}
+                    className=" form-control-sm"
+                    value={task}
+                    onKeyPress={updateTaskHandler}
+                    fieldName="Task"
+                  />
                 ) : (
-                  <>
-                    <div className={task?.status ? "done" : ""}>
-                      <input
-                        type="checkbox"
-                        onClick={() => completeTaskHandler(task?.id)}
-                      ></input>
-                      <span className="taskText">{task?.title}</span>
-                    </div>
-                  </>
+                  <div className={task?.status ? "done" : ""}>
+                    <input
+                      type="checkbox"
+                      onClick={() => completeTaskHandler(task?.id)}
+                    ></input>
+                    <span className="taskText">{task?.title}</span>
+                  </div>
                 )}
                 <div className="iconWrap">
                   <span
@@ -75,4 +72,4 @@ const ToDOList = ({
   );
 };
 
-export default ToDOList;
+export default ToDoList;

@@ -1,32 +1,34 @@
 import { useForm } from "react-hook-form";
 import ActionType from "../config/enums";
-const InputField = (props) => {
+const InputField = ({
+  className,
+  placeholder,
+  value,
+  fieldName,
+  onKeyPress,
+}) => {
   const { register, reset } = useForm();
 
   const onSubmit = (event) => {
-    event.preventDefault();
-    let obj = {
-      id: props?.value?.id,
-      title: event.target.value,
-      status: props?.value?.status,
-    };
-    props.onKeyPress(obj);
-    reset();
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === ActionType.Enter) {
-      onSubmit(event);
+    if (event.key === ActionType.Enter && event.target.value) {
+      event.preventDefault();
+      let obj = {
+        id: value?.id,
+        title: event.target.value,
+        status: value?.status,
+      };
+      onKeyPress(obj);
+      reset();
     }
   };
 
   return (
-    <form onKeyPress={handleKeyDown}>
+    <form onKeyPress={onSubmit}>
       <input
-        className={props?.className}
-        placeholder={props?.placeholder}
-        defaultValue={props?.value?.title}
-        {...register("Task")}
+        className={className}
+        placeholder={placeholder}
+        defaultValue={value?.title}
+        {...register(fieldName)}
       />
     </form>
   );
