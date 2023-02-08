@@ -1,8 +1,5 @@
-const CheckBox = ({ type, id, onClick }) => {
-  const handelClick = () => {
-    onClick(id);
-  };
-  return <input type={type} onClick={handelClick}></input>;
+const CheckBox = ({ type, onClick }) => {
+  return <input type={type} onClick={onClick}></input>;
 };
 
 export default CheckBox;

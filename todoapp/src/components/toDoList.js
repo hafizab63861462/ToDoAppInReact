@@ -13,18 +13,6 @@ const ToDoList = ({
   completeAction,
   updateAction,
 }) => {
-  const deleteTaskHandler = (id) => {
-    deleteAction(id);
-  };
-
-  const editTaskHandler = (id) => {
-    editAction(id);
-  };
-
-  const completeTaskHandler = (id) => {
-    completeAction(id);
-  };
-
   const updateTaskHandler = (obj) => {
     updateAction(obj);
   };
@@ -48,20 +36,16 @@ const ToDoList = ({
                   <div className={task?.status ? "done" : ""}>
                     <CheckBox
                       type="checkbox"
-                      id={task?.id}
-                      onClick={completeTaskHandler}
+                      onClick={() => completeAction(task.id)}
                     />
                     <span className="taskText">{task?.title}</span>
                   </div>
                 )}
                 <div className="iconWrap">
-                  <span
-                    className="p-3"
-                    onClick={() => editTaskHandler(task?.id)}
-                  >
+                  <span className="p-3" onClick={() => editAction(task?.id)}>
                     <FontAwesomeIcon icon={faPen} />
                   </span>
-                  <span onClick={() => deleteTaskHandler(task.id)}>
+                  <span onClick={() => deleteAction(task.id)}>
                     <FontAwesomeIcon icon={faTrashCan} />
                   </span>
                 </div>
