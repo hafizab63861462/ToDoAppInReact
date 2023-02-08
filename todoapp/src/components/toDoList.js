@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import "./toDoList.css";
 import { faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import InputField from "./InputField";
+import TextField from "./textField";
+import CheckBox from "./checkBox";
 
 const ToDoList = ({
   list,
@@ -36,7 +37,7 @@ const ToDoList = ({
             <Fragment key={task?.id}>
               <div className="col imageAllignment">
                 {list[task.id]?.isShowUpdateField ? (
-                  <InputField
+                  <TextField
                     key={task.id}
                     className=" form-control-sm"
                     value={task}
@@ -45,10 +46,11 @@ const ToDoList = ({
                   />
                 ) : (
                   <div className={task?.status ? "done" : ""}>
-                    <input
+                    <CheckBox
                       type="checkbox"
-                      onClick={() => completeTaskHandler(task?.id)}
-                    ></input>
+                      id={task?.id}
+                      onClick={completeTaskHandler}
+                    />
                     <span className="taskText">{task?.title}</span>
                   </div>
                 )}

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import ActionType from "../config/enums";
-const InputField = ({
+import EnumType from "../config/enums";
+const TextField = ({
   className,
   placeholder,
   value,
@@ -23,7 +23,7 @@ const InputField = ({
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === ActionType.Enter) {
+    if (event.key === EnumType.Enter) {
       onSubmit(event);
     }
   };
@@ -40,4 +40,4 @@ const InputField = ({
   );
 };
 
-export default InputField;
+export default TextField;

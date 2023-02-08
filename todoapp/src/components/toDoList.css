@@ -21,3 +21,7 @@
   width: auto;
   display: inline-block;
 }
+
+.iconWrap:hover {
+  cursor: pointer;
+}

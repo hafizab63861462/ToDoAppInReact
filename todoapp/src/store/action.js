@@ -1,5 +1,4 @@
-import ActionType from "../config/enums";
-import store from ".";
+import ActionType from "./actionTypes";
 
 export const addToDo = (title, status, isShowUpdateField) => ({
   type: ActionType.Add,

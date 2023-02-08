@@ -1,10 +1,5 @@
-const ActionType = {
+const EnumType = {
   Enter: "Enter",
-  Add: "Add",
-  Edit: "Edit",
-  Update: "Update",
-  Delete: "Delete",
-  Complete: "Complete",
 };
 
-export default ActionType;
+export default EnumType;
