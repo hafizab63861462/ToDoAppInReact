@@ -32,7 +32,7 @@ const toDo = (state = initialState, action) => {
       };
 
     case ActionType.Delete:
-      let tempDelete = state.toDos.filter((task) => task.id != action.id);
+      let tempDelete = state.toDos.filter((task) => task.id !== action.id);
       return {
         ...state,
         toDos: tempDelete,
