@@ -17,14 +17,16 @@ const ToDoList = ({
     updateAction(obj);
   };
 
+  console.log(list);
+
   return (
     <div>
       {list &&
-        list.map((task) => {
+        list.map((task, index) => {
           return (
-            <Fragment key={task?.id}>
+            <Fragment key={index}>
               <div className="col imageAllignment">
-                {list[task.id]?.isShowUpdateField ? (
+                {list[index]?.isShowUpdateField ? (
                   <TextField
                     key={task.id}
                     className=" form-control-sm"
