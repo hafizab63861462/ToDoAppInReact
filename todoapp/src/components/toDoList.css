@@ -1,0 +1,27 @@
+.imageAllignment {
+  background-color: white;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 10px, 140px, 10px, 15px;
+  text-align: left;
+  font-size: 22px;
+  position: relative;
+}
+
+.imageAllignment .done .taskText {
+  text-decoration: line-through;
+  opacity: 0.3;
+}
+
+.iconWrap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 25px;
+  width: auto;
+  display: inline-block;
+}
+
+.iconWrap:hover {
+  cursor: pointer;
+}
