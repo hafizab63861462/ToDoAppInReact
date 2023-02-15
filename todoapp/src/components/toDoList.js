@@ -17,8 +17,6 @@ const ToDoList = ({
     updateAction(obj);
   };
 
-  console.log(list);
-
   return (
     <div>
       {list &&
