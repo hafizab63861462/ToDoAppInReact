@@ -20,11 +20,11 @@ const toDo = (state = initialState, action) => {
       };
 
     case ActionType.Edit:
-      const tempEdit = state.toDos.map((todo) => {
-        return todo.id === action.id
+      const tempEdit = state.toDos.map((todo) =>
+        todo.id === action.id
           ? { ...todo, isShowUpdateField: true }
-          : todo;
-      });
+          : { ...todo, isShowUpdateField: false }
+      );
 
       return {
         ...state,
@@ -39,11 +39,11 @@ const toDo = (state = initialState, action) => {
       };
 
     case ActionType.Update:
-      const tempUpdate = state.toDos.map((todo) => {
-        return todo.id === action.obj.id
+      const tempUpdate = state.toDos.map((todo) =>
+        todo.id === action.obj.id
           ? { ...todo, title: action.obj.title, isShowUpdateField: false }
-          : todo;
-      });
+          : todo
+      );
 
       return {
         ...state,
@@ -51,12 +51,9 @@ const toDo = (state = initialState, action) => {
       };
 
     case ActionType.Complete:
-      const tempComplete = state.toDos.map((todo) => {
-        if (todo.id === action.id) {
-          return { ...todo, status: !todo.status };
-        }
-        return todo;
-      });
+      const tempComplete = state.toDos.map((todo) =>
+        todo.id === action.id ? { ...todo, status: !todo.status } : todo
+      );
 
       return {
         ...state,
