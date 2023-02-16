@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { ToDoListContainer } from "./containers/toDoListContainer";
-import { AddTaskContainer } from "./containers/addTaskContainer";
+import { ToDoListContainer } from "./containers/ToDoListContainer";
+import { AddTaskContainer } from "./containers/AddTaskContainer";
 
 function App() {
   return (

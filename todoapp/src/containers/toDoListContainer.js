@@ -5,7 +5,7 @@ import {
   deleteToDo,
   completeToDo,
 } from "../store/action";
-import ToDoList from "../components/toDoList";
+import ToDoList from "../components/ToDoList";
 
 function mapStateToProps(state = { toDos: [] }) {
   return {

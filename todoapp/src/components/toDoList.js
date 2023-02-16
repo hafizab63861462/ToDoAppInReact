@@ -1,10 +1,10 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment } from "react";
-import "./toDoList.css";
+import CheckBox from "./CheckBox";
+import TextField from "./TextField";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import TextField from "./textField";
-import CheckBox from "./checkBox";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./ToDoList.css";
 
 const ToDoList = ({
   list,
